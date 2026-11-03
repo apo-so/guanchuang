@@ -1,0 +1,19 @@
+# 观窗自制示例。试将外框宽度从 620 改成 680。
+window = {
+    name = "gc_observatory"
+    size = { 620 380 }
+    parentanchor = center
+
+    text_single = {
+        name = "heading"
+        raw_text = "观窗试作"
+        position = { 28 24 }
+        fontsize = 26
+        fontcolor = { 0.92 0.84 0.66 1 }
+    }
+    widget = {
+        name = "content"
+        position = { 28 80 }
+        size = { 560 250 }
+    }
+}
