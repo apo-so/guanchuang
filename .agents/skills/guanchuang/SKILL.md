@@ -7,6 +7,8 @@ description: 用观窗把本地 HTML 窗口草图转换成 CK3 原生 GUI 和配
 
 使用 [scripts/run.py](scripts/run.py) 执行任务。它调用仓库内的观窗转换器，保留原有视觉检查，只以命令行和 JSON 与助手交互。游戏内的注册和玩法事件由 Mod 作者接入。
 
+推荐由 Codex 中的 GPT 调用。DeepSeek（DS）或其他模型的本地助手也使用相同入口，宿主需能读写文件并执行命令。
+
 ## 第一次调用
 
 复用或克隆 [观窗仓库](https://github.com/apo-so/guanchuang)。在仓库根目录，用本机 Python 运行随库的行宫窗口样例。实测环境为 Windows、Python 3.13 和 Edge 或 Chrome。

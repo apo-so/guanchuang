@@ -1,29 +1,42 @@
 # 观窗 Guanchuang
 
-观窗是一款 **AI 辅助工具**，用来在 Windows 上制作《十字军之王 III》（CK3）的原生窗口外观。你告诉 DeepSeek 等 AI 助手想做什么窗口，助手把设计写成本地 HTML，观窗将它转换为 CK3 原生 `.gui` 和配套的 DDS 贴图，并指出需要复核的控件。你也可以导入已有的原生窗口，在网页中调整外观后写回游戏文件。
+观窗是一款 **AI 辅助工具**，用来在 Windows 上制作《十字军之王 III》（CK3）的原生窗口外观。你向助手描述窗口，助手把设计写成本地 HTML，观窗将它转换为原生 `.gui` 和配套的 DDS 贴图，并指出需要复核的控件。你也可以导入已有的原生窗口，在网页中调整外观后写回游戏文件。
 
-## 交给 AI 助手
+## 使用方式
 
-本仓库提供 `guanchuang` skill。有本机命令权限的助手可以自行转换、调整控件和读取检查结果。[打开观窗 skill](.agents/skills/guanchuang/SKILL.md)
+观窗程序、`guanchuang` skill 和示例都在这个仓库。让本地 AI 助手使用技能，取 `main` 分支即可。自己操作 Windows 界面时，可以从同一仓库的 Releases 下载程序。
 
-> 请在本地克隆或复用 https://github.com/apo-so/guanchuang 的 main 分支，读取 `.agents/skills/guanchuang/SKILL.md`，用它的 `demo` 把随库「行宫择址」网页转成 CK3 原生窗口。请自行运行，交回 GUI、DDS、对照图、审计报告的路径和结论。
+### 把这条发给本地 AI 助手
 
-有本地命令权限的助手可以直接运行观窗。普通网页聊天可以完成 HTML 设计，你把页面保存到本机后，再由观窗转换。`Guanchuang.exe` 是已经打包好的 Windows 程序，既可双击也可用命令调用。源码提供相同的 Python 入口。[AI 使用示例](docs/AI协作.md)
+**推荐在 Codex 里用 GPT** 执行这条指令。DeepSeek（DS）等其他助手只要能读写本地文件并运行终端命令，也可以使用同一个 skill。
 
-## 第一次使用
+> 请在本地工作区克隆或复用 https://github.com/apo-so/guanchuang 的 `main` 分支，读取 `.agents/skills/guanchuang/SKILL.md`，按其中的 Python 入口自行准备依赖并运行 `demo`，把随库「行宫择址」HTML 转成 CK3 原生窗口，返回 `.gui`、DDS 目录、对照截图和 `visual-audit.json` 的本地路径与检查结论。全程由你调用观窗，不用我手动打开 EXE。
 
-1. 在预发行页面下载 `Guanchuang-1.1.0-preview2-Windows-x64.zip`，完整解压后双击 `Guanchuang.exe`。[下载 Windows x64 预览版](https://github.com/apo-so/guanchuang/releases/tag/v1.1.0-preview2)
-2. 选择随包的 `示例/外观草图.html`，点击「转换并打开整窗编辑页」。HTML 转换使用本机的 Edge 或 Chrome。
-3. 试着移动一个控件。在编辑页下载完整 GUI 草稿和编辑请求，回到启动器点击「校验导出并生成最小差分」，就能找到可供 Mod 使用的文件。[使用说明](使用说明.md)
+### 助手如何运行
 
-## 两种工作方式
+在克隆的仓库根目录打开 PowerShell。用 Python 3.13 运行随库示例，网页由本机的 Edge 或 Chrome 在后台测量。
 
-| 起点 | 可以得到什么 |
+```powershell
+$runner = '.\.agents\skills\guanchuang\scripts\run.py'
+py -3.13 $runner demo
+```
+
+如果返回 `SETUP_REQUIRED`，让助手按技能里的“第一次调用”建立专用 Python 环境、安装随库依赖，再用该环境运行命令。[技能与依赖说明](.agents/skills/guanchuang/SKILL.md)
+
+示例命令可以直接运行。处理自己的窗口时，把文件路径和窗口名换成实际值。
+
+| 想做什么 | 在同一 PowerShell 窗口运行 |
 | --- | --- |
-| 已有 CK3 `.gui` | 选一个具名窗口，在整窗网页里调已有控件的位置、尺寸、文字或纹理。导出时保留未编辑的源码。 |
-| 自己写的 HTML | 指定画布、窗口和要显示的状态，生成固定布局的 `.gui` 与配套贴图。新窗口的游戏入口和按钮行为由 Mod 作者接入。 |
+| 将 HTML 草图转成原生窗口与贴图 | `py -3.13 $runner import ".\示例\外观草图.html" --window gc_palace` |
+| 将已有原生窗口打开成可编辑网页 | `py -3.13 $runner import ".\示例\gui\observatory.gui" --window gc_observatory` |
 
-每次转换都会留下 `visual-audit.json`。范围内检查通过的结果在 `candidate`，需要人工看图的草稿在 `待复核/candidate`。如果发现确定的错位、丢字或贴图错误，程序只输出诊断和对照图。
+命令返回 JSON。`output` 是这次的新目录，`artifacts` 列出实际文件的绝对路径。生成原生窗口时看 `gui` 和 `gfx`，导入原生窗口时看 `editor`。两种情况都可以从 `audit` 打开检查报告。
+
+HTML 转换结果为 `VERIFIED_SCOPED` 时可取范围内已通过的候选。`REVIEW_REQUIRED` 的草稿在 `待复核/candidate`，要查看报告指出的具体控件。`REJECTED` 只交付诊断及可取得的截图。[编辑和交付示例](docs/AI协作.md)
+
+### 自己用 Windows 界面
+
+完整解压 Windows x64 ZIP，双击 `Guanchuang.exe`，选择 `示例/外观草图.html`，点击「转换并打开整窗编辑页」。修改完成后下载完整 GUI 与编辑请求，再回到启动器点击「校验导出并生成最小差分」。[下载 Windows 预览版](https://github.com/apo-so/guanchuang/releases/tag/v1.1.0-preview2) · [使用说明](使用说明.md)
 
 当前版本为 **1.1.0-preview2**。固定画布下的浏览器布局、导出和回读已经实测。由独立网页生成的新窗口仍待 CK3 实机复验。[本版说明](docs/预览版发布说明.md)
 
