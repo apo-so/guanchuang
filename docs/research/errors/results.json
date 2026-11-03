@@ -1,0 +1,75 @@
+{
+  "text-width": {
+    "status": "REJECTED",
+    "errors": [
+      {
+        "code": "TEXT_ALLOCATION",
+        "owner": "value",
+        "expected": [
+          169.25,
+          17
+        ],
+        "actual": [
+          4,
+          17
+        ]
+      }
+    ]
+  },
+  "wrong-texture": {
+    "status": "REJECTED",
+    "errors": [
+      {
+        "code": "TEXTURE_PIXELS",
+        "owner": "gfx/guanchuang/gc_contract/093dfabdfc86a5d748a8.dds",
+        "expected": [
+          [
+            145,
+            65
+          ],
+          "4b01f0e94a8dc2444a62fd4d43f314fd29fddf7c909b0de5a3649458a731c600"
+        ],
+        "actual": [
+          [
+            1,
+            1
+          ],
+          "34aaa746c25a0f105c4316bbb1f009aa359f49582656ee97d73c58132d563423"
+        ]
+      }
+    ]
+  },
+  "moved-badge": {
+    "status": "REJECTED",
+    "errors": [
+      {
+        "code": "NATIVE_BOX",
+        "owner": "badge",
+        "expected": [
+          134,
+          60,
+          45,
+          20
+        ],
+        "actual": [
+          961,
+          60,
+          45,
+          20
+        ]
+      },
+      {
+        "code": "TEXT_POSITION",
+        "owner": "badge",
+        "expected": [
+          134,
+          62
+        ],
+        "actual": [
+          0,
+          2
+        ]
+      }
+    ]
+  }
+}

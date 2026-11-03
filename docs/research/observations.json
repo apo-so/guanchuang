@@ -1,0 +1,159 @@
+{
+  "schema": "guanchuang.research.observations.v1",
+  "native_editor": {
+    "game_version": "1.20.1.2 Crozier",
+    "window": "cmm23_manager",
+    "source_line": "gui/cmm23_manager.gui:2",
+    "initial_size": [
+      1420,
+      800
+    ],
+    "edited_size": [
+      1500,
+      800
+    ],
+    "unsaved_visible_after_exit": true,
+    "unsaved_test_file_sha256": "a6ec17a1a40c5604f197091893dae95946c26daec268ee1772da6c20cb7cadd2",
+    "native_save_bytes": 121449,
+    "nul_byte_count": 22344,
+    "first_invalid_utf8_offset": 167,
+    "native_save_sha256": "95fd342d0798b1abfe4c2f88b336c8449f5357fdf794351f3cd2c3da4d6ea9fd",
+    "native_save_reload": "FAIL",
+    "restored_sha256": "30269975fb20f27d36b6f8d640d335cb6a8bf8e3b5680add1dc3d06817de0fe5",
+    "rollback_render": "PASS",
+    "user_acceptance": "NOT_RUN"
+  },
+  "html_demo": {
+    "canvas": [
+      1760,
+      990
+    ],
+    "source_crop_size": [
+      480,
+      260
+    ],
+    "counts": {
+      "elements": 9,
+      "text_lines": 6,
+      "paint_layers": 5,
+      "texture_files": 3
+    },
+    "whole_window": {
+      "mean_abs_rgb": 1.162,
+      "changed_fraction": 0.0173
+    },
+    "gui_sha256": "78564de94e2c43aab53a26b65c1b136392f666738d133e36d41ea6f9dbb4cd93",
+    "visual_status": "VERIFIED_SCOPED",
+    "native_engine": "NOT_RUN"
+  },
+  "one_coordinate": {
+    "window": "sltm_create_landless_window",
+    "before_sha256": "26d29b64522524c42f4968699e6d8445b9387d5ec9bc91afad88547d7df69146",
+    "exported_and_game_test_copy_sha256": "efc9b3f6231cdcade1e969e4774f5b3081a19dafcaa88068341ebf169809be33",
+    "patch": {
+      "field": "control7.position_x",
+      "span": [
+        1136,
+        1139
+      ],
+      "old_token": "358",
+      "new_token": "150"
+    },
+    "before_targets": 119,
+    "after_targets": 119,
+    "untouched_bytes_verified": true,
+    "full_parser_reimport": "PASS",
+    "reimported_value": 150
+  },
+  "empty_state": {
+    "game_frame": [
+      1920,
+      1200
+    ],
+    "browser_frame": [
+      1760,
+      990
+    ],
+    "ui_scale": "100%",
+    "repeated_empty_text": 7,
+    "ordinary_type_shows_domicile_summary": true,
+    "art_bbox_xyxy": [
+      572,
+      191,
+      1162,
+      505
+    ],
+    "footer_buttons_equal_after_return": true,
+    "title_creation": "NOT_RUN"
+  },
+  "scroll": {
+    "ordered_columns": [
+      "left",
+      "middle",
+      "right"
+    ],
+    "native_maximum_px": [
+      29,
+      321,
+      195
+    ],
+    "browser_maximum_px": [
+      29,
+      321,
+      195
+    ],
+    "wheel_actions": 28,
+    "restored_content_pixels_changed": [
+      0,
+      0,
+      0
+    ],
+    "visual_claim": "three columns in the measured fixture"
+  },
+  "tooltip": {
+    "frame_size": [
+      1760,
+      990
+    ],
+    "observations": [
+      {
+        "from_xy": [
+          650,
+          620
+        ],
+        "end_xy": [
+          612,
+          647
+        ],
+        "candidate_rect_xywh": [
+          401,
+          438.5,
+          430,
+          192
+        ],
+        "opaque_mae_255": 0.455388180764774,
+        "frame_sha256": "e58ad016a0a3c7c71ae0d565bff0a9b51b80ac0f1c25f2f112aea4b04c08b0f0"
+      },
+      {
+        "from_xy": [
+          624,
+          647
+        ],
+        "end_xy": [
+          612,
+          647
+        ],
+        "candidate_rect_xywh": [
+          415,
+          438.5,
+          430,
+          192
+        ],
+        "opaque_mae_255": 0.455388180764774,
+        "frame_sha256": "b64de9396f61190f1e4bff0963ac265345207cb8935d414d379dd7760394c249"
+      }
+    ],
+    "origin": "screen evidence and material matching",
+    "engine_rule": "UNKNOWN"
+  }
+}

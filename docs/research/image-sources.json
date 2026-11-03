@@ -1,0 +1,201 @@
+{
+  "schema": "guanchuang.research.images.v1",
+  "crop_convention": "原图左上角为原点；框依次为左、上、右、下，右和下不含。PNG 保留裁切区域原像素，不含桌面元数据。",
+  "frames": {
+    "frame-before": {
+      "image": "images/frame-before.png",
+      "source_sha256": "0fdcd9fdca10e42c47e68e5a455c80127ce9dcb8cca9091193f2781d89ae2f3d",
+      "image_sha256": "1838fb70269896ae0fb82d1941831c74ff7025952fe617eacb5122ccb43c175f",
+      "source_size": [
+        1280,
+        800
+      ],
+      "crop_xyxy": [
+        115,
+        115,
+        1165,
+        305
+      ]
+    },
+    "frame-after": {
+      "image": "images/frame-after.png",
+      "source_sha256": "b7f65ee4b278041423373990fb5691edc831533a7bf2bc24da59de36460c5f33",
+      "image_sha256": "1a1cb95baa665c111a719591392e186600057be7d3352821fd43678bbe8147a7",
+      "source_size": [
+        1280,
+        800
+      ],
+      "crop_xyxy": [
+        115,
+        115,
+        1165,
+        305
+      ]
+    },
+    "frame-rollback": {
+      "image": "images/frame-rollback.png",
+      "source_sha256": "6a749e2f9671e40650653737a75f63e5a397941383faeb9a4eda81d0d62d4deb",
+      "image_sha256": "4e54c7913778bbf3c35c45d120b080a1c046f7f5b7fb6c1d9820324d1ba3563d",
+      "source_size": [
+        1280,
+        800
+      ],
+      "crop_xyxy": [
+        115,
+        115,
+        1165,
+        305
+      ]
+    },
+    "ds-title": {
+      "image": "images/ds-title.png",
+      "source_sha256": "99f96ba687a99057c353212fdbed2b3a8331cd5a624868fd93065da786947e9e",
+      "image_sha256": "855c7cb6bea7c996498821d19b89f63056dd03f2e5207778195ef916e36624d4",
+      "source_size": [
+        1920,
+        1200
+      ],
+      "crop_xyxy": [
+        290,
+        115,
+        1100,
+        215
+      ]
+    },
+    "ds-empty": {
+      "image": "images/ds-empty.png",
+      "source_sha256": "cf7c65ace42f19490574f83c048ed782e35c35a589dbf78aee8290d110c46032",
+      "image_sha256": "87154a44a9d36bdf9bc145947347600fd8016c1ce3c111eddef80659b27dd330",
+      "source_size": [
+        1920,
+        1200
+      ],
+      "crop_xyxy": [
+        290,
+        95,
+        1470,
+        895
+      ]
+    },
+    "ds-stale": {
+      "image": "images/ds-stale.png",
+      "source_sha256": "efdbb06225ccddc1d6fea5df9ff567a96963f486c52ae0b0d8e8c3da9d21f807",
+      "image_sha256": "c6e2a9c6dc1992b4b411c184df2fac11a3be4931adb1176bdd808d7fa85392a9",
+      "source_size": [
+        1920,
+        1200
+      ],
+      "crop_xyxy": [
+        290,
+        95,
+        1470,
+        895
+      ]
+    },
+    "ds-web-empty": {
+      "image": "images/ds-web-empty.png",
+      "source_sha256": "7e6fda79a0f3595566f0f9d7638afe64437e257413c00fadfa3de59df42f5ed9",
+      "image_sha256": "02e30126d5b9f6f9bbb5dfed217096797b09811ff4e0a7cb06ea27b9fb5b31d3",
+      "source_size": [
+        1760,
+        990
+      ],
+      "crop_xyxy": [
+        290,
+        95,
+        1470,
+        895
+      ]
+    },
+    "scroll-top": {
+      "image": "images/scroll-top.png",
+      "source_sha256": "29f55e23cf9af47dd9c37226588fdcf898d72021190a23d075856ad2e3b9eea5",
+      "image_sha256": "c6d0387737d44a80fab001dfea3832b1f9c942ae6c36453d3422a0f763e8049a",
+      "source_size": [
+        1760,
+        990
+      ],
+      "crop_xyxy": [
+        170,
+        320,
+        1590,
+        880
+      ]
+    },
+    "scroll-bottom": {
+      "image": "images/scroll-bottom.png",
+      "source_sha256": "bed797cee4c2b11b9436198421b99b1149d6b7033579b862765eff7ee8348b81",
+      "image_sha256": "3915c5f2e193f5cebacfc5440ea6843ba5764c00cded38cebda09e998c3cbb33",
+      "source_size": [
+        1760,
+        990
+      ],
+      "crop_xyxy": [
+        170,
+        320,
+        1590,
+        880
+      ]
+    },
+    "tip-a": {
+      "image": "images/tip-a.png",
+      "source_sha256": "e58ad016a0a3c7c71ae0d565bff0a9b51b80ac0f1c25f2f112aea4b04c08b0f0",
+      "image_sha256": "6d86d5a47752a02f0f32f81c77b9805d70edcdc7b632bc34235811729fe9d5ee",
+      "source_size": [
+        1760,
+        990
+      ],
+      "crop_xyxy": [
+        365,
+        405,
+        895,
+        680
+      ]
+    },
+    "tip-b": {
+      "image": "images/tip-b.png",
+      "source_sha256": "b64de9396f61190f1e4bff0963ac265345207cb8935d414d379dd7760394c249",
+      "image_sha256": "1da470a8e17be9f7b9fe5eaa02d34cd1fd579cc7bc6eff7398ab8f449b806dbd",
+      "source_size": [
+        1760,
+        990
+      ],
+      "crop_xyxy": [
+        365,
+        405,
+        895,
+        680
+      ]
+    },
+    "demo-html": {
+      "image": "images/demo-html.png",
+      "source_sha256": "837020c18331eecffbfb770747b9242dc1008fe4e4b28b5330f1b0d8a970147b",
+      "image_sha256": "14a5200b5efe840963044e93dbdafccfd44df2f45ce9ba691eefabb525efb73c",
+      "source_size": [
+        480,
+        260
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        480,
+        260
+      ]
+    },
+    "demo-readback": {
+      "image": "images/demo-readback.png",
+      "source_sha256": "9da8f7dc565010a1144b640bd9bd5b988748d4b6eb0785bf00acd9e0dc0fe3a9",
+      "image_sha256": "dd0a4eb221be2249294f1aefeedf386af680eb8683fdb927bc87d0be3092fb7c",
+      "source_size": [
+        480,
+        260
+      ],
+      "crop_xyxy": [
+        0,
+        0,
+        480,
+        260
+      ]
+    }
+  }
+}
