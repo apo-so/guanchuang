@@ -1,9 +1,9 @@
 ---
 name: guanchuang
-description: 用观窗把本地 HTML 窗口草图转换成 CK3 原生 GUI 和配套 DDS，或把现有 .gui 导入网页、编辑显式外观属性并校验导出。适用于有本机命令权限的 AI 助手制作和检查 CK3 窗口外观。
+description: CK3 Mod 制作技能，适用于《十字军之王 III》（Crusader Kings III）的 GUI 窗口和界面布局。将本地 HTML 草图转成原生 .gui 和 DDS，或把已有 .gui 转成网页，调整控件位置、尺寸等外观属性并校验导出。
 ---
 
-# 观窗
+# 观窗 · CK3 Mod 窗口制作
 
 使用 [scripts/run.py](scripts/run.py) 执行任务。它调用仓库内的观窗转换器，保留原有视觉检查，只以命令行和 JSON 与助手交互。游戏内的注册和玩法事件由 Mod 作者接入。
 

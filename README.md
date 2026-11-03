@@ -1,6 +1,8 @@
-# 观窗 Guanchuang
+# 观窗 Guanchuang · CK3 Mod 制作技能（GUI 窗口布局）
 
 观窗是一款 **AI 辅助工具**，用来在 Windows 上制作《十字军之王 III》（CK3）的原生窗口外观。你向助手描述窗口，助手把设计写成本地 HTML，观窗将它转换为原生 `.gui` 和配套的 DDS 贴图，并指出需要复核的控件。你也可以导入已有的原生窗口，在网页中调整外观后写回游戏文件。
+
+[观窗技能说明](.agents/skills/guanchuang/SKILL.md) · [CK3 Mod 制作技能总目录](https://github.com/apo-so/ck3-modding-skills)
 
 ## 使用方式
 
