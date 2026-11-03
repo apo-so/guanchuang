@@ -4,7 +4,9 @@
 
 ## 交给 AI 助手
 
-> 请做一个 CK3「行宫择址」窗口的离线 HTML 草图。用观窗把它转成原生窗口和贴图，读取 `visual-audit.json`，把通过的文件或具体的待复核问题交给我。
+本仓库提供 `guanchuang` skill。有本机命令权限的助手可以自行转换、调整控件和读取检查结果。[打开观窗 skill](.agents/skills/guanchuang/SKILL.md)
+
+> 请在本地克隆或复用 https://github.com/apo-so/guanchuang 的 main 分支，读取 `.agents/skills/guanchuang/SKILL.md`，用它的 `demo` 把随库「行宫择址」网页转成 CK3 原生窗口。请自行运行，交回 GUI、DDS、对照图、审计报告的路径和结论。
 
 有本地命令权限的助手可以直接运行观窗。普通网页聊天可以完成 HTML 设计，你把页面保存到本机后，再由观窗转换。`Guanchuang.exe` 是已经打包好的 Windows 程序，既可双击也可用命令调用。源码提供相同的 Python 入口。[AI 使用示例](docs/AI协作.md)
 
