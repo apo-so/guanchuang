@@ -1,0 +1,49 @@
+name: Verify public release download
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published release tag
+        required: true
+        default: v1.1.0-preview2
+      expected_sha256:
+        description: Optional SHA-256 from the approved local ZIP
+        required: false
+
+permissions: {}
+
+jobs:
+  verify:
+    name: Anonymous Windows ZIP readback
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download the public attachments and check their bytes
+        shell: bash
+        env:
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+          EXPECTED_SHA256: ${{ inputs.expected_sha256 || '' }}
+        run: |
+          set -euo pipefail
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9][a-zA-Z0-9.-]*)?$ ]]
+          [[ -z "$EXPECTED_SHA256" || "$EXPECTED_SHA256" =~ ^[0-9a-f]{64}$ ]]
+
+          archive="Guanchuang-${TAG#v}-Windows-x64.zip"
+          base="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/$TAG"
+          for asset in SHA256.txt "$archive"; do
+            curl -q --silent --show-error --fail --location --retry 2 \
+              --proto '=https' --proto-redir '=https' --connect-timeout 10 \
+              --max-time 120 -H 'Authorization:' -H 'Cookie:' \
+              --output "$asset" -- "$base/$asset"
+          done
+
+          actual="$(sha256sum -- "$archive" | cut -d' ' -f1)"
+          declared="$(tr -d '\r' < SHA256.txt)"
+          [[ "$declared" == "$actual  $archive" ]] || { echo "SHA256.txt mismatch"; exit 1; }
+          [[ -z "$EXPECTED_SHA256" || "$actual" == "$EXPECTED_SHA256" ]] || { echo "Approved ZIP mismatch"; exit 1; }
+          python3 -m zipfile -t "$archive"
+          bytes="$(stat -c %s -- "$archive")"
+          printf 'tag=%s\nfile=%s\nbytes=%s\nsha256=%s\n' "$TAG" "$archive" "$bytes" "$actual" | tee -a "$GITHUB_STEP_SUMMARY"
