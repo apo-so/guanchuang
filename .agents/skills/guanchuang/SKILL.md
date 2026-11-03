@@ -36,7 +36,7 @@ $python = Join-Path $venv 'Scripts/python.exe'
 - **直接调整属性**　用 `edit 工作区 --target 别名 --set 字段=值`。例如导入随库的 `示例/gui/observatory.gui` 后，用 `--target frame --set width=680` 调整外框。也可给唯一控件名，或对同一控件重复 `--set`。交付校验后的 `.gui`、最小差分和回执。
 - **已有编辑页下载物**　用 `verify 工作区 --request 编辑请求.json --gui 导出文件.gui`，匹配同一份原始源码后校验。
 
-除 `list` 外，每次都用新的输出目录。省略 `--out` 时，入口会在用户文档的“观窗工作区”内选择唯一目录，并在 JSON 的 `output` 返回绝对路径。也可用 `GUANCHUANG_OUTPUTS` 自定默认根目录。把结果留在测试候选中。
+除 `list` 外，每次都用新的输出目录。省略 `--out` 时，入口优先使用用户文档的“观窗工作区”。若它位于输入目录内，则选用系统临时目录下的 Guanchuang-outputs。实际绝对路径在 JSON 的 `output` 中。也可用 `GUANCHUANG_OUTPUTS` 自定默认根目录。把结果留在测试候选中。
 
 ## 读结果并交付
 

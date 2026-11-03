@@ -53,18 +53,21 @@ class HeadlessSkill(unittest.TestCase):
         rc, names = self.call("list", gui)
         self.assertEqual((rc, names["windows"]), (0, ["gc_observatory"]))
         rc, workspace = self.call("import", gui, "--window", names["windows"][0])
-        self.assertEqual((rc, workspace["status"]), (0, "VERIFIED_SCOPED"), workspace)
+        self.assertEqual((rc, workspace["status"]), (3, "REVIEW_REQUIRED"), workspace)
+        self.assertTrue(any("锚点" in note for note in workspace["review"]))
         self.assertTrue(Path(workspace["artifacts"]["editor"]).is_file())
 
         rc, edited = self.call("edit", workspace["output"], "--target", "frame", "--set", "width=680")
-        self.assertEqual((rc, edited["status"]), (0, "VERIFIED_SCOPED"), edited)
+        self.assertEqual((rc, edited["status"]), (3, "REVIEW_REQUIRED"), edited)
+        self.assertTrue(any("锚点" in note for note in edited["review"]))
         self.assertEqual(Path(edited["artifacts"]["baseline"]).read_bytes(), original)
         receipt = json.loads(Path(edited["artifacts"]["receipt"]).read_text("utf-8"))
         self.assertEqual([(p["old_token"], p["new_token"]) for p in receipt["patches"]], [("620", "680")])
         self.assertTrue(receipt["untouched_bytes_verified"])
         rc, checked = self.call("verify", workspace["output"], "--request", Path(edited["output"]) / "request.json",
                                 "--gui", edited["artifacts"]["gui"])
-        self.assertEqual((rc, checked["status"]), (0, "VERIFIED_SCOPED"), checked)
+        self.assertEqual((rc, checked["status"]), (3, "REVIEW_REQUIRED"), checked)
+        self.assertTrue(any("锚点" in note for note in checked["review"]))
         self.assertEqual(Path(checked["artifacts"]["gui"]).read_bytes(), Path(edited["artifacts"]["gui"]).read_bytes())
         self.assertEqual(gui.read_bytes(), original)
 
@@ -73,7 +76,8 @@ class HeadlessSkill(unittest.TestCase):
         src.mkdir()
         html = src / "window.html"
         base = '<style>*{box-sizing:border-box}body{margin:0}main{width:260px;height:120px;background:#fff}h1{margin:0;width:120px;font:20px Arial;white-space:nowrap;%s}</style><main data-gc-window><h1>WWWWWW</h1></main>'
-        html.write_text(base % "box-shadow:3px 4px 5px #555", "utf-8")
+        # Use a painted shape so this control isolates unsupported shadow rendering from font metrics.
+        html.write_text('<style>body{margin:0}main{width:260px;height:120px;background:#fff}i{display:block;width:90px;height:30px;background:#456;box-shadow:3px 4px 5px #555}</style><main data-gc-window><i id="swatch"></i></main>', "utf-8")
         rc, review = self.call("import", html, "--window", "gc_example")
         self.assertEqual((rc, review["status"]), (3, "REVIEW_REQUIRED"), review)
         self.assertIn("待复核", Path(review["artifacts"]["gui"]).parts)

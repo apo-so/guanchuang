@@ -40,12 +40,32 @@ def missing_packages(root):
     return missing
 
 
-def output_dir(explicit):
-    if explicit:
-        dest = Path(explicit).expanduser().resolve()
+def output_dir(args, root):
+    if args.out:
+        dest = Path(args.out).expanduser().resolve()
     else:
-        base = os.environ.get("GUANCHUANG_OUTPUTS") or Path.home() / "Documents" / "观窗工作区"
-        dest = (Path(base).expanduser() / ("AI-" + uuid.uuid4().hex)).resolve()
+        if args.command == "demo":
+            protected = [root / "示例"]
+        elif args.command == "import":
+            source = args.input.resolve()
+            protected = [source.parent]
+            if source.suffix.lower() == ".gui":
+                from guanchuang import source_info
+                protected = [source_info(source)[0]]
+            if args.game_root:
+                protected.append(args.game_root.resolve())
+        else:
+            protected = [args.workspace.resolve()]
+            profile = read_json(protected[0] / "source-profile.json")
+            protected.extend(Path(p).resolve() for p in profile["read_only_roots"])
+        configured = os.environ.get("GUANCHUANG_OUTPUTS")
+        bases = [Path(configured)] if configured else [Path.home() / "Documents" / "观窗工作区",
+                                                        Path(tempfile.gettempdir()) / "Guanchuang-outputs"]
+        available = (base.expanduser().resolve() for base in bases)
+        base = next((base for base in available if not any(base.is_relative_to(p) for p in protected)), None)
+        if base is None:
+            raise ValueError("请用 --out 指定来源和资源目录以外的新目录。")
+        dest = base / ("AI-" + uuid.uuid4().hex)
     if os.path.lexists(dest):
         raise ValueError("输出目录已经存在，请选择一个新的目录：" + str(dest))
     return dest
@@ -174,7 +194,7 @@ def main():
         sys.path.insert(0, str(root / "source"))
         from playwright.sync_api import Error as BrowserError
         if args.command != "list":
-            dest = output_dir(args.out)
+            dest = output_dir(args, root)
         try:
             result = execute(args, root, dest)
         except BrowserError as exc:
